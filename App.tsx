@@ -37,116 +37,119 @@ export default function App() {
   const activeCategory = CATEGORIES.find(c => c.id === activeTab);
 
   return (
-    <div className="min-h-screen pb-20 lg:pb-0 lg:flex lg:flex-col select-none">
-      {/* Header & Contrôles */}
-      <header className="bg-white shadow-sm sticky top-0 z-10 p-4 border-b">
-        <div className="max-w-4xl mx-auto space-y-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-black text-indigo-700 tracking-tighter">MO2</h1>
-            <span className="text-[10px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">
-              v1.6
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Note Concert (Tonic)</label>
-              <select
-                value={concertRoot}
-                onChange={(e) => setConcertRoot(parseInt(e.target.value))}
-                className="w-full bg-gray-100 border-none rounded-xl py-3 px-4 text-lg font-bold focus:ring-2 focus:ring-indigo-500 transition-all appearance-none cursor-pointer"
-              >
-                {Object.entries(CHROMATIC_MAP).map(([idx, note]) => (
-                  <option key={idx} value={idx}>{note.sharp}</option>
-                ))}
-              </select>
+    <div className="min-h-screen lg:flex lg:flex-col select-none bg-gray-50 text-gray-900">
+      {/* Zone Collante Supérieure (Header + Résultats + Nav) */}
+      <div className="sticky top-0 z-30 shadow-md">
+        {/* Header & Contrôles */}
+        <header className="bg-white p-3 md:p-4 border-b">
+          <div className="max-w-4xl mx-auto space-y-3">
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl font-black text-indigo-700 tracking-tighter">MO2</h1>
+              <span className="text-[9px] bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
+                v1.7
+              </span>
             </div>
 
-            <div className="space-y-1">
-              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Tonalité Instrument</label>
-              <div className="flex bg-gray-100 p-1 rounded-xl">
-                <button
-                  onClick={() => setInstrument('ALTO')}
-                  className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${instrument === 'ALTO' ? 'bg-white shadow-sm text-indigo-700' : 'text-gray-500'}`}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Note Concert</label>
+                <select
+                  value={concertRoot}
+                  onChange={(e) => setConcertRoot(parseInt(e.target.value))}
+                  className="w-full bg-gray-100 border-none rounded-lg py-2 px-3 text-base font-bold focus:ring-2 focus:ring-indigo-500 transition-all appearance-none cursor-pointer"
                 >
-                  Eb
-                </button>
-                <button
-                  onClick={() => setInstrument('TENOR')}
-                  className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${instrument === 'TENOR' ? 'bg-white shadow-sm text-indigo-700' : 'text-gray-500'}`}
-                >
-                  Bb
-                </button>
-                <button
-                  onClick={() => setInstrument('UT')}
-                  className={`flex-1 py-2 text-sm font-bold rounded-lg transition-all ${instrument === 'UT' ? 'bg-white shadow-sm text-indigo-700' : 'text-gray-500'}`}
-                >
-                  C
-                </button>
+                  {Object.entries(CHROMATIC_MAP).map(([idx, note]) => (
+                    <option key={idx} value={idx}>{note.sharp}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Instrument</label>
+                <div className="flex bg-gray-100 p-1 rounded-lg">
+                  <button
+                    onClick={() => setInstrument('ALTO')}
+                    className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-all ${instrument === 'ALTO' ? 'bg-white shadow-sm text-indigo-700' : 'text-gray-500'}`}
+                  >
+                    Eb
+                  </button>
+                  <button
+                    onClick={() => setInstrument('TENOR')}
+                    className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-all ${instrument === 'TENOR' ? 'bg-white shadow-sm text-indigo-700' : 'text-gray-500'}`}
+                  >
+                    Bb
+                  </button>
+                  <button
+                    onClick={() => setInstrument('UT')}
+                    className={`flex-1 py-1.5 text-xs font-bold rounded-md transition-all ${instrument === 'UT' ? 'bg-white shadow-sm text-indigo-700' : 'text-gray-500'}`}
+                  >
+                    C
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Affichage des Résultats */}
-      <div className="bg-indigo-700 text-white p-6 shadow-lg border-b border-indigo-800">
-        <div className="max-w-4xl mx-auto space-y-1 text-center lg:text-left">
-          <div className="flex flex-wrap items-baseline gap-2 justify-center lg:justify-start">
-            <h2 className="text-2xl font-bold tracking-tight">{selectedMode.name}</h2>
-            <p className="text-indigo-200 text-sm opacity-80">sur {CHROMATIC_MAP[concertRoot].sharp}</p>
-          </div>
-          
-          <div className="pt-4 flex flex-wrap justify-center lg:justify-start gap-4 items-center">
-            {transposedResult.map((note, idx) => (
-              <React.Fragment key={idx}>
-                <div className="flex items-start">
-                  <span className="text-3xl lg:text-5xl font-black tracking-tighter">
-                    {note.name}
-                  </span>
-                  {note.isMicrotonal && (
-                    <span className="text-2xl lg:text-3xl text-indigo-300 font-serif -ml-1 mt-1" title="Quart de ton">
-                      𝄳
+        {/* Affichage des Résultats (Zone Bleue) */}
+        <div className="bg-indigo-700 text-white p-4 md:p-6 border-b border-indigo-800">
+          <div className="max-w-4xl mx-auto text-center lg:text-left">
+            <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-3">{selectedMode.name}</h2>
+            
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 items-center">
+              {transposedResult.map((note, idx) => (
+                <React.Fragment key={idx}>
+                  <div className="flex items-start">
+                    <span className="text-2xl md:text-4xl font-black tracking-tighter">
+                      {note.name}
                     </span>
+                    {note.isMicrotonal && (
+                      <span className="text-xl md:text-2xl text-indigo-300 font-serif -ml-0.5 mt-0.5" title="Quart de ton">
+                        𝄳
+                      </span>
+                    )}
+                  </div>
+                  {idx < transposedResult.length - 1 && (
+                    <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-indigo-400 opacity-50"></span>
                   )}
-                </div>
-                {idx < transposedResult.length - 1 && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 mx-1"></span>
-                )}
-              </React.Fragment>
-            ))}
+                </React.Fragment>
+              ))}
+            </div>
           </div>
         </div>
+
+        {/* Onglets Catégories */}
+        <nav className="flex overflow-x-auto bg-gray-200 p-1 space-x-1 no-scrollbar border-b border-gray-300">
+          {CATEGORIES.map(cat => (
+            <button
+              key={cat.id}
+              onClick={() => {
+                setActiveTab(cat.id);
+                setSelectedMode(cat.modes[0]);
+              }}
+              className={`whitespace-nowrap flex-1 py-2.5 px-4 text-[10px] font-black uppercase tracking-wider rounded-md transition-all ${activeTab === cat.id ? 'bg-white text-indigo-700 shadow-sm' : 'text-gray-500 hover:bg-gray-300'}`}
+            >
+              {cat.title}
+            </button>
+          ))}
+        </nav>
       </div>
 
-      {/* Onglets Catégories */}
-      <nav className="flex overflow-x-auto bg-gray-200 p-1 space-x-1 sticky top-[248px] md:top-[124px] z-10 no-scrollbar border-b border-gray-300">
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat.id}
-            onClick={() => {
-              setActiveTab(cat.id);
-              setSelectedMode(cat.modes[0]);
-            }}
-            className={`whitespace-nowrap flex-1 py-3 px-6 text-[11px] font-black uppercase tracking-wider rounded-lg transition-all ${activeTab === cat.id ? 'bg-white text-indigo-700 shadow-sm' : 'text-gray-500 hover:bg-gray-300'}`}
-          >
-            {cat.title}
-          </button>
-        ))}
-      </nav>
-
-      {/* Grille de sélection des Modes */}
-      <main className="flex-1 overflow-y-auto max-w-4xl mx-auto w-full p-4">
+      {/* Grille de sélection des Modes (Partie Scrollable) */}
+      <main className="flex-1 max-w-4xl mx-auto w-full p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {activeCategory?.modes.map(mode => (
             <button
               key={mode.name}
-              onClick={() => setSelectedMode(mode)}
-              className={`text-left p-5 rounded-2xl border-2 transition-all active:scale-[0.98] ${selectedMode.name === mode.name 
+              onClick={() => {
+                setSelectedMode(mode);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`text-left p-4 md:p-5 rounded-xl border-2 transition-all active:scale-[0.98] ${selectedMode.name === mode.name 
                 ? 'border-indigo-600 bg-indigo-50 shadow-md ring-1 ring-indigo-600' 
                 : 'border-white bg-white hover:border-gray-200 shadow-sm'}`}
             >
-              <h3 className={`text-lg font-bold leading-tight ${selectedMode.name === mode.name ? 'text-indigo-800' : 'text-gray-800'}`}>
+              <h3 className={`text-base md:text-lg font-bold leading-tight ${selectedMode.name === mode.name ? 'text-indigo-800' : 'text-gray-800'}`}>
                 {mode.name}
               </h3>
             </button>
@@ -155,7 +158,7 @@ export default function App() {
       </main>
 
       <footer className="text-center p-8 text-gray-400 text-[10px] font-bold uppercase tracking-widest">
-        MO2 – Assistant Modal v1.6
+        MO2 – Assistant Modal v1.7
       </footer>
     </div>
   );
