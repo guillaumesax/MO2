@@ -24,7 +24,7 @@ export const CATEGORIES: ModeCategory[] = [
     modes: [
       { 
         name: 'Nahawand / Sihli (Algérie)', 
-        intervals: [0, 2, 3, 5, 7, 8, 11], // Pas de Sib, donc Si bécarre (11)
+        intervals: [0, 2, 3, 5, 7, 8, 11], 
         useFlats: true 
       },
       { 
@@ -40,30 +40,30 @@ export const CATEGORIES: ModeCategory[] = [
       { 
         name: 'Rast', 
         intervals: [0, 2, 3, 5, 7, 9, 10], 
-        microtonalIndices: [2, 6], // Mib et Sib quarts de ton
+        microtonalIndices: [2, 6], 
         useFlats: true 
       },
       { 
         name: 'Bayati', 
-        intervals: [0, 1, 3, 5, 7, 8, 11], // Pas de Sib (Si bécarre), Réb et Lab qdt
+        intervals: [0, 1, 3, 5, 7, 8, 11], 
         microtonalIndices: [1, 5], 
         useFlats: true 
       },
       { 
         name: 'Hijaz / Zidane (Algérie)', 
-        intervals: [0, 1, 4, 5, 7, 8, 11], // Pas de Sib (Si bécarre)
+        intervals: [0, 1, 4, 5, 7, 8, 11], 
         useFlats: true 
       },
       { 
         name: 'Nekriz', 
-        intervals: [0, 2, 3, 6, 7, 8, 11], // Fa# (6), Lab (8), Si bécarre (11)
-        sharpIndices: [3], // L'intervalle à l'index 3 (semiton 6) doit être Fa#
+        intervals: [0, 2, 3, 6, 7, 8, 11], 
+        sharpIndices: [3], 
         useFlats: true 
       },
       { 
         name: 'Mawal (Algérie) / Mode Bartók', 
         intervals: [0, 2, 4, 6, 7, 9, 10], 
-        sharpIndices: [3], // L'intervalle à l'index 3 (semiton 6) doit être Fa#
+        sharpIndices: [3], 
         useFlats: true 
       },
       { 
@@ -73,6 +73,35 @@ export const CATEGORIES: ModeCategory[] = [
       },
       { name: 'Khoumasi 1', intervals: [0, 3, 5, 7, 10], useFlats: true },
       { name: 'Khoumasi 2', intervals: [0, 2, 4, 7, 9], useFlats: true },
+    ]
+  },
+  {
+    id: 'special',
+    title: 'Modes Spéciaux',
+    modes: [
+      { 
+        name: 'Gamme Altérée', 
+        intervals: [0, 1, 3, 4, 6, 8, 10], 
+        useFlats: true 
+      },
+      { 
+        name: 'Gamme par tons', 
+        intervals: [0, 2, 4, 6, 8, 10] 
+      },
+      { 
+        name: 'Demi-ton / Ton', 
+        intervals: [0, 1, 3, 4, 6, 7, 9, 10],
+        useFlats: true
+      },
+      { 
+        name: 'Blues Majeure', 
+        intervals: [0, 2, 3, 4, 7, 9] 
+      },
+      { 
+        name: 'Blues Mineure', 
+        intervals: [0, 3, 5, 6, 7, 10],
+        useFlats: true
+      },
     ]
   },
   {

@@ -44,9 +44,12 @@ export default function App() {
         <header className="bg-white p-3 md:p-4 border-b">
           <div className="max-w-4xl mx-auto space-y-3">
             <div className="flex items-center justify-between">
-              <h1 className="text-xl font-black text-indigo-700 tracking-tighter">MO2</h1>
-              <span className="text-[9px] bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
-                v1.7
+              <div className="flex items-baseline gap-2 overflow-hidden">
+                <h1 className="text-xl font-black text-indigo-700 tracking-tighter flex-shrink-0">MO2</h1>
+                <span className="text-[10px] font-semibold text-gray-400 truncate italic">proposée par Guillaume Sax</span>
+              </div>
+              <span className="text-[9px] bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider flex-shrink-0">
+                v2.0
               </span>
             </div>
 
@@ -92,25 +95,25 @@ export default function App() {
         </header>
 
         {/* Affichage des Résultats (Zone Bleue) */}
-        <div className="bg-indigo-700 text-white p-4 md:p-6 border-b border-indigo-800">
-          <div className="max-w-4xl mx-auto text-center lg:text-left">
-            <h2 className="text-xl md:text-2xl font-bold tracking-tight mb-3">{selectedMode.name}</h2>
+        <div className="bg-indigo-700 text-white p-3 md:p-6 border-b border-indigo-800">
+          <div className="max-w-4xl mx-auto text-center lg:text-left overflow-hidden">
+            <h2 className="text-lg md:text-2xl font-bold tracking-tight mb-2 md:mb-3 truncate">{selectedMode.name}</h2>
             
-            <div className="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4 items-center">
+            <div className="flex flex-nowrap justify-between items-center gap-1 md:gap-4 w-full">
               {transposedResult.map((note, idx) => (
                 <React.Fragment key={idx}>
-                  <div className="flex items-start">
-                    <span className="text-2xl md:text-4xl font-black tracking-tighter">
+                  <div className="flex items-start flex-shrink-0">
+                    <span className="text-lg sm:text-2xl md:text-4xl font-black tracking-tighter">
                       {note.name}
                     </span>
                     {note.isMicrotonal && (
-                      <span className="text-xl md:text-2xl text-indigo-300 font-serif -ml-0.5 mt-0.5" title="Quart de ton">
+                      <span className="text-sm sm:text-xl md:text-2xl text-indigo-300 font-serif -ml-0.5 mt-0.5" title="Quart de ton">
                         𝄳
                       </span>
                     )}
                   </div>
                   {idx < transposedResult.length - 1 && (
-                    <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-indigo-400 opacity-50"></span>
+                    <span className="w-0.5 md:w-1.5 h-0.5 md:h-1.5 rounded-full bg-indigo-400 opacity-40 flex-shrink-0"></span>
                   )}
                 </React.Fragment>
               ))}
@@ -158,7 +161,7 @@ export default function App() {
       </main>
 
       <footer className="text-center p-8 text-gray-400 text-[10px] font-bold uppercase tracking-widest">
-        MO2 – Assistant Modal v1.7
+        MO2 – Assistant Modal v2.0
       </footer>
     </div>
   );
