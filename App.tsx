@@ -40,16 +40,16 @@ export default function App() {
     <div className="min-h-screen lg:flex lg:flex-col select-none bg-gray-50 text-gray-900">
       {/* Zone Collante Supérieure (Header + Résultats + Nav) */}
       <div className="sticky top-0 z-30 shadow-md">
-        {/* Header & Contrôles */}
-        <header className="bg-white p-3 md:p-4 border-b">
+        {/* Header & Contrôles - avec padding safe area pour iOS */}
+        <header className="bg-white p-3 md:p-4 border-b safe-pt">
           <div className="max-w-4xl mx-auto space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-baseline gap-2 overflow-hidden">
-                <h1 className="text-xl font-black text-indigo-700 tracking-tighter flex-shrink-0">MO2</h1>
+                <h1 className="text-xl font-black text-indigo-700 tracking-tighter flex-shrink-0 uppercase">MO2</h1>
                 <span className="text-[10px] font-semibold text-gray-400 truncate italic">proposée par Guillaume Sax</span>
               </div>
               <span className="text-[9px] bg-indigo-100 text-indigo-800 px-1.5 py-0.5 rounded-full font-bold uppercase tracking-wider flex-shrink-0">
-                v2.0
+                v2.1
               </span>
             </div>
 
@@ -160,8 +160,8 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="text-center p-8 text-gray-400 text-[10px] font-bold uppercase tracking-widest">
-        MO2 – Assistant Modal v2.0
+      <footer className="text-center p-8 text-gray-400 text-[10px] font-bold uppercase tracking-widest pb-12">
+        MO2 – Assistant Modal v2.1
       </footer>
     </div>
   );
