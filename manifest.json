@@ -3,13 +3,14 @@
   "name": "MO2 - Assistant Modal",
   "short_name": "MO2",
   "description": "Assistant de transposition et de modes pour saxophonistes.",
-  "start_url": ".",
+  "start_url": "/MO2/",
+  "scope": "/MO2/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4338ca",
   "icons": [
     {
-      "src": "apple-touch-icon.png",
+      "src": "/MO2/apple-touch-icon.png",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"
